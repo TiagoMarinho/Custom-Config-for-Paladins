@@ -17,6 +17,7 @@ ul {
 	width: 95%;
 }
 ul > li {
+	position: relative;
 	text-transform: uppercase;
 	font-size: 18px;
 	font-weight: 700;
@@ -47,6 +48,7 @@ ul > li > div.option {
 ul > li > div.option > input {
 	cursor: pointer;
 	border: 0;
+	color: #22373a;
 	font-size: 20px;
 	font-weight: 700;
 	background: transparent;
@@ -60,15 +62,34 @@ ul > li > div.option > input.close {
 ul > li > span.description {
 	display: none;
 	position: absolute;
-	left: 0; right: 0; bottom: 0;
-	padding: 0.2em 0.6em;
+	left: 0;
+	margin-top: 1.33em;
+	padding: 1em;
 	font-size: 16px;
 	font-weight: 300;
 	text-transform: none;
+	border-radius: 1.5px;
 	color: #ebedf3;
-	background: #2e6d71;
+	background: #1c1b20;
 	z-index: 3;
+}
+
+ul > li > span.description:after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 1em;
+	width: 0;
+	height: 0;
+	border: 10px solid transparent;
+	border-bottom-color: #1c1b20;
+	border-top: 0;
+	margin-left: -10px;
+	margin-top: -10px;
 }
 ul > li:hover > span.description {
 	display: block;
+}
+ul > li > span.description:hover {
+	display: none;
 }
