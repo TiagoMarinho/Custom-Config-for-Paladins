@@ -1,0 +1,102 @@
+* {
+	margin: 0;
+}
+html, body {
+	font-family: "Open Sans", arial, sans-serif;
+	color: #22373a;
+	background: url("../img/cassie blurred.png") no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+h1.title {
+	width: 100%;
+	margin: 1em 0;
+	text-align: center;
+	color: #ebedf3;
+}
+ul {
+	margin: 2em 2.5%; padding: 0;
+	width: 95%;
+}
+ul > li {
+	position: relative;
+	text-transform: uppercase;
+	font-size: 18px;
+	font-weight: 700;
+	margin: .3em 0; padding: .6em;
+	list-style-type: none;
+	border-radius: 1.5px;
+	border: 1px solid rgba(255, 255, 255, 0.0);
+	outline: 1px solid rgba(0, 0, 0, 0.25);
+	background: rgba(255, 255, 255, 0.8);
+}
+ul > li:hover {
+	background: #49b0ac;
+	outline: 0;
+	border: 1px solid rgba(255, 255, 255, 0.5);
+}
+ul > li:hover > div.label, ul > li:hover > div.option > input, ul > li:hover > div.option {
+	color: #ebedf3;
+}
+ul > li > div.label {
+	display: inline-block;
+	width: 70%;
+}
+ul > li > div.option {
+	display: inline-block;
+	float: right;
+	width: 30%;
+	text-align: center;
+	white-space: nowrap;
+	overflow: hidden;
+}
+ul > li > div.option > input {
+	cursor: pointer;
+	border: 0;
+	color: #22373a;
+	font-size: 20px;
+	font-weight: 700;
+	background: transparent;
+}
+ul > li > div.option > input.open {
+	float: left;
+}
+ul > li > div.option > input.close {
+	float: right;
+}
+ul > li > span.description {
+	display: none;
+	position: absolute;
+	left: 0;
+	margin-top: 1.33em;
+	padding: 1em;
+	font-size: 16px;
+	font-weight: 300;
+	text-transform: none;
+	border-radius: 1.5px;
+	color: #ebedf3;
+	background: #1c1b20;
+	z-index: 3;
+}
+
+ul > li > span.description:after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 1em;
+	width: 0;
+	height: 0;
+	border: 10px solid transparent;
+	border-bottom-color: #1c1b20;
+	border-top: 0;
+	margin-left: -10px;
+	margin-top: -10px;
+}
+ul > li:hover > span.description {
+	display: block;
+}
+ul > li > span.description:hover {
+	display: none;
+}
