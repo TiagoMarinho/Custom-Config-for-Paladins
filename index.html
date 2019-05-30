@@ -6,22 +6,28 @@
 	<link rel="icon" href="img/favicon.png" type="image/x-icon" />
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<script src="js/chaossystemsettings.js"></script>
+	<script src="js/operation.js"></script>
 	<script src="js/option.js"></script>
 	<script src="js/booloption.js"></script>
 	<script src="js/rangeoption.js"></script>
 	<script src="js/resolutionoption.js"></script>
 	<script src="js/qualityoption.js"></script>
-	<script src="js/videosettings.js"></script>
+	<script src="js/optionsdictionary.js"></script>
+	<script src="js/optionsdictionarytooptionsarray.js"></script>
 	<script src="js/uimanager.js"></script>
+	<script src="js/generateconfig.js"></script>
 </head>
 <body>
-	<h1 class="title">Custom Config for Paladins</h1>
-	<ul id="options">
-	</ul>
+	<h1 id="maintitle">Custom Config for Paladins</h1>
+	<div id="options">
+	</div>
 	<script>
-		let customSettings = new VideoSettings()
-		let interfaceManager = new UIManager("options", customSettings)
+		let customSettings = optionsDictionaryToOptionsArray(optionsDictionary)
+		let options = document.getElementById("options")
+		let interfaceManager = new UIManager(options, customSettings)
 		interfaceManager.updateUI()
+		console.log(generateConfig(chaosSystemSettings, customSettings))
 	</script>
 </body>
 </html>
