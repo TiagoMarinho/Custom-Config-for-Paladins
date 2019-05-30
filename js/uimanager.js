@@ -1,27 +1,36 @@
 class UIManager {
-	constructor (wrapperID, settings) {
-		this.wrapper = document.getElementById(wrapperID)
+	constructor (wrapper, settings) {
+		this.wrapper = wrapper
 		this.settings = settings
 	}
-	updateUI () {
+	updateUI (settings = this.settings) {
 		this.wrapper.innerHTML = ``
-		for (let id = 0; id < this.settings.options.length; ++id) (function(id){
+		let ul = document.createElement("ul")
+		this.wrapper.appendChild(ul)
+		for (let id = 0; id < settings.length; ++id) (function(id){
 
-			let option = this.settings.options[id]
-			
+			let option = settings[id]
+
 			let li = document.createElement("li")
-			this.wrapper.appendChild(li)
+			ul.appendChild(li)
 
 			let divLabel = document.createElement("div")
 			li.appendChild(divLabel)
 			divLabel.className = "label"
 			divLabel.innerHTML = option.name
 
-			if (option.description.length > 0) {
+			if (option.description.length > 0 || option.warning.length > 0) {
 				let spanDescription = document.createElement("span")
 				li.appendChild(spanDescription)
 				spanDescription.className = "description"
 				spanDescription.innerHTML = option.description
+
+				if (option.warning.length > 0) {
+					let spanWarning = document.createElement("span")
+					spanDescription.appendChild(spanWarning)
+					spanWarning.className = "warning"
+					spanWarning.innerHTML = option.warning
+				}
 			}
 
 			let divOption = document.createElement("div")
@@ -36,13 +45,13 @@ class UIManager {
 			prevButton.id = `prev${id}`
 
 			prevButton.onclick = () => {
-				this.settings.options[id].prev()
+				settings[id].prev()
 				this.updateUI()
 			}
 
 			let valueLabel = document.createElement("span")
 			divOption.appendChild(valueLabel)
-			valueLabel.innerHTML = option.value
+			valueLabel.innerHTML = option.valueLabel
 
 			let nextButton = document.createElement("input")
 			divOption.appendChild(nextButton)
@@ -52,10 +61,9 @@ class UIManager {
 			nextButton.id = `next${id}`
 			
 			nextButton.onclick = () => {
-				this.settings.options[id].next()
+				settings[id].next()
 				this.updateUI()
 			}
-
 		}).bind(this)(id)
 	}
 }

@@ -1,9 +1,13 @@
 class Option {
-	constructor (name, states, defaultIndex = 0, description = "") {
+	constructor (name, originalKey, states, userStates, operation = Operation.replace, defaultIndex = 0, description = "", warning = "") {
 		this.name = name
+		this.originalKey = originalKey
 		this.states = states
+		this.userStates = userStates
+		this.operation = operation
 		this.currentStateIndex = defaultIndex
 		this.description = description
+		this.warning = warning
 	}
 	next () {
 		if (this.states.length - 1 > this.currentStateIndex)
@@ -15,5 +19,12 @@ class Option {
 	}
 	get value () {
 		return this.states[this.currentStateIndex]
+	}
+	get valueLabel () {
+		if (this.userStates) {
+			return this.userStates[this.currentStateIndex]
+		} else {
+			return this.states[this.currentStateIndex]
+		}
 	}
 }
