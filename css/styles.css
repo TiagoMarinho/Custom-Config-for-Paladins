@@ -10,7 +10,7 @@ html, body {
 	-o-background-size: cover;
 	background-size: cover;
 }
-h1.title {
+h1#maintitle {
 	width: 100%;
 	margin: 1em 0;
 	text-align: center;
@@ -27,10 +27,9 @@ ul > li {
 	font-weight: 700;
 	margin: .3em 0; padding: .6em;
 	list-style-type: none;
-	border-radius: 1.5px;
-	border: 1px solid rgba(255, 255, 255, 0.0);
-	outline: 1px solid rgba(0, 0, 0, 0.25);
-	background: rgba(255, 255, 255, 0.8);
+	border-radius: 2.5px;
+	border: 1px solid #22373a;
+	background: rgba(255, 255, 255, 0.666);
 }
 ul > li:hover {
 	background: #49b0ac;
@@ -67,18 +66,21 @@ ul > li > div.option > input.close {
 	float: right;
 }
 ul > li > span.description {
-	display: none;
+	opacity: 0.0;
+	display: block;
 	position: absolute;
 	left: 0;
-	margin-top: 1.33em;
+	margin: 1.33em;
 	padding: 1em;
 	font-size: 16px;
 	font-weight: 300;
 	text-transform: none;
-	border-radius: 1.5px;
-	color: #ebedf3;
-	background: #1c1b20;
+	border-radius: 2.5px;
+	color: #1c1b20;
+	background: #fff;
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
 	z-index: 3;
+	pointer-events: none;
 }
 
 ul > li > span.description:after {
@@ -89,14 +91,17 @@ ul > li > span.description:after {
 	width: 0;
 	height: 0;
 	border: 10px solid transparent;
-	border-bottom-color: #1c1b20;
+	border-bottom-color: #fff;
 	border-top: 0;
 	margin-left: -10px;
 	margin-top: -10px;
 }
 ul > li:hover > span.description {
-	display: block;
+	opacity: 1.0;
 }
-ul > li > span.description:hover {
-	display: none;
+ul > li > span.description > span.warning {
+	color: #f44;
+}
+ul > li > span.description > span.warning:before {
+	content: ' ';
 }
