@@ -5,7 +5,7 @@ class UIManager {
 		this.submit = submit
 		this.chaosSystemSettings = chaosSystemSettings
 	}
-	updateUI (settings = this.settings) {
+	updateUI (settings = this.settings) { // TODO: Optimize by not having to redraw entire UI at every change.
 		this.wrapper.innerHTML = ``
 		let ul = document.createElement("ul")
 		this.wrapper.appendChild(ul)

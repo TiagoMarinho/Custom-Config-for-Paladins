@@ -19,9 +19,19 @@ class ChaosSystemSettings {
 		this.vsync = false
 		this.doubleBuffering = false
 		this.tripleBuffering = false
+		this.meshScreenPixelAreaThreshold = 256
 
 		this.resolution = {x: 1920, y: 1080}
 		this.screenPercentage = 100
+		this.ssaa = 1.0
+		this.dx11 = true
+		this.ragdolls = true
+
+		this.filtering = "Aniso"
+
+		this.charTextureRes = 64
+		this.weaponTextureRes = 64
+		this.mapTextureRes = 64
 	}
 	get result () {
 		let chaosSystemSettings = `[SystemSettings]
@@ -65,11 +75,11 @@ class ChaosSystemSettings {
 		UpscaleScreenPercentage=True
 		Fullscreen=True
 		FullscreenWindowed=False
-		MeshScreenPixelAreaThreshold=256.000000
+		MeshScreenPixelAreaThreshold=${this.meshScreenPixelAreaThreshold}.000000
 		OctreeScreenPixelAreaThreshold=512.000000
 		AllowOpenGL=False
 		AllowRadialBlur=False
-		UseDX11=True
+		UseDX11=${this.dx11}
 		UseD3D11Beta=False
 		bAllowTexturePack=True
 		AllowSubsurfaceScattering=False
@@ -100,7 +110,7 @@ class ChaosSystemSettings {
 		ShadowFadeExponent=0.250000
 		ResX=${this.resolution.x}
 		ResY=${this.resolution.y}
-		ScreenPercentage=${this.screenPercentage}.000000
+		ScreenPercentage=${this.screenPercentage * this.ssaa}.000000
 		SceneCaptureStreamingMultiplier=1.000000
 		ShadowTexelsPerPixel=2.000000
 		PreShadowResolutionFactor=0.500000
@@ -211,35 +221,35 @@ class ChaosSystemSettings {
 		ApexClothingAllowAsyncCooking=True
 		ApexClothingAllowApexWorkBetweenSubsteps=FALSE
 		TargetFrameRate=60
-		TEXTUREGROUP_World=(MinLODSize=32,MaxLODSize=256,MaxLODSizeTexturePack=256,LODBias=3,LODBiasTexturePack=3,MinMagFilter=Aniso,MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
-		TEXTUREGROUP_WorldNormalMap=(MinLODSize=32,MaxLODSize=256,MaxLODSizeTexturePack=256,LODBias=3,LODBiasTexturePack=3,MinMagFilter=Aniso,MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
-		TEXTUREGROUP_WorldSpecular=(MinLODSize=32,MaxLODSize=256,MaxLODSizeTexturePack=256,LODBias=3,LODBiasTexturePack=3,MinMagFilter=Aniso,MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
-		TEXTUREGROUP_Character=(MinLODSize=64,MaxLODSize=512,MaxLODSizeTexturePack=1024,LODBias=2,LODBiasTexturePack=2,MinMagFilter=Aniso,MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
-		TEXTUREGROUP_CharacterNormalMap=(MinLODSize=64,MaxLODSize=512,MaxLODSizeTexturePack=1024,LODBias=2,LODBiasTexturePack=2,MinMagFilter=Aniso,MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
-		TEXTUREGROUP_CharacterSpecular=(MinLODSize=64,MaxLODSize=512,MaxLODSizeTexturePack=512,LODBias=2,LODBiasTexturePack=2,MinMagFilter=Aniso,MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
-		TEXTUREGROUP_Weapon=(MinLODSize=64,MaxLODSize=256,MaxLODSizeTexturePack=256,LODBias=2,LODBiasTexturePack=2,MinMagFilter=Aniso,MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
-		TEXTUREGROUP_WeaponNormalMap=(MinLODSize=64,MaxLODSize=256,MaxLODSizeTexturePack=256,LODBias=2,LODBiasTexturePack=2,MinMagFilter=Aniso,MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
-		TEXTUREGROUP_WeaponSpecular=(MinLODSize=64,MaxLODSize=256,MaxLODSizeTexturePack=256,LODBias=2,LODBiasTexturePack=2,MinMagFilter=Aniso,MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
-		TEXTUREGROUP_Vehicle=(MinLODSize=64,MaxLODSize=512,MaxLODSizeTexturePack=512,LODBias=2,LODBiasTexturePack=2,MinMagFilter=Aniso,MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
-		TEXTUREGROUP_VehicleNormalMap=(MinLODSize=64,MaxLODSize=512,MaxLODSizeTexturePack=512,LODBias=2,LODBiasTexturePack=2,MinMagFilter=Aniso,MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
-		TEXTUREGROUP_VehicleSpecular=(MinLODSize=64,MaxLODSize=512,MaxLODSizeTexturePack=512,LODBias=2,LODBiasTexturePack=2,MinMagFilter=Aniso,MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
-		TEXTUREGROUP_Cinematic=(MinLODSize=128,MaxLODSize=256,MaxLODSizeTexturePack=256,LODBias=2,LODBiasTexturePack=2,MinMagFilter=Aniso,MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
+		TEXTUREGROUP_World=(MinLODSize=${this.mapTextureRes},MaxLODSize=${this.mapTextureRes},MaxLODSizeTexturePack=${this.mapTextureRes},LODBias=3,LODBiasTexturePack=3,MinMagFilter=${this.filtering},MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
+		TEXTUREGROUP_WorldNormalMap=(MinLODSize=${this.mapTextureRes},MaxLODSize=${this.mapTextureRes},MaxLODSizeTexturePack=${this.mapTextureRes},LODBias=3,LODBiasTexturePack=3,MinMagFilter=${this.filtering},MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
+		TEXTUREGROUP_WorldSpecular=(MinLODSize=${this.mapTextureRes},MaxLODSize=${this.mapTextureRes},MaxLODSizeTexturePack=${this.mapTextureRes},LODBias=3,LODBiasTexturePack=3,MinMagFilter=${this.filtering},MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
+		TEXTUREGROUP_Character=(MinLODSize=${this.charTextureRes},MaxLODSize=${this.charTextureRes},MaxLODSizeTexturePack=${this.charTextureRes},LODBias=2,LODBiasTexturePack=2,MinMagFilter=${this.filtering},MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
+		TEXTUREGROUP_CharacterNormalMap=(MinLODSize=${this.charTextureRes},MaxLODSize=${this.charTextureRes},MaxLODSizeTexturePack=${this.charTextureRes},LODBias=2,LODBiasTexturePack=2,MinMagFilter=${this.filtering},MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
+		TEXTUREGROUP_CharacterSpecular=(MinLODSize=${this.charTextureRes},MaxLODSize=${this.charTextureRes},MaxLODSizeTexturePack=${this.charTextureRes},LODBias=2,LODBiasTexturePack=2,MinMagFilter=${this.filtering},MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
+		TEXTUREGROUP_Weapon=(MinLODSize=${this.weaponTextureRes},MaxLODSize=${this.weaponTextureRes},MaxLODSizeTexturePack=${this.weaponTextureRes},LODBias=2,LODBiasTexturePack=2,MinMagFilter=${this.filtering},MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
+		TEXTUREGROUP_WeaponNormalMap=(MinLODSize=${this.weaponTextureRes},MaxLODSize=${this.weaponTextureRes},MaxLODSizeTexturePack=${this.weaponTextureRes},LODBias=2,LODBiasTexturePack=2,MinMagFilter=${this.filtering},MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
+		TEXTUREGROUP_WeaponSpecular=(MinLODSize=${this.weaponTextureRes},MaxLODSize=${this.weaponTextureRes},MaxLODSizeTexturePack=${this.weaponTextureRes},LODBias=2,LODBiasTexturePack=2,MinMagFilter=${this.filtering},MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
+		TEXTUREGROUP_Vehicle=(MinLODSize=64,MaxLODSize=512,MaxLODSizeTexturePack=512,LODBias=2,LODBiasTexturePack=2,MinMagFilter=${this.filtering},MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
+		TEXTUREGROUP_VehicleNormalMap=(MinLODSize=64,MaxLODSize=512,MaxLODSizeTexturePack=512,LODBias=2,LODBiasTexturePack=2,MinMagFilter=${this.filtering},MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
+		TEXTUREGROUP_VehicleSpecular=(MinLODSize=64,MaxLODSize=512,MaxLODSizeTexturePack=512,LODBias=2,LODBiasTexturePack=2,MinMagFilter=${this.filtering},MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
+		TEXTUREGROUP_Cinematic=(MinLODSize=128,MaxLODSize=256,MaxLODSizeTexturePack=256,LODBias=2,LODBiasTexturePack=2,MinMagFilter=${this.filtering},MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
 		TEXTUREGROUP_Effects=(MinLODSize=32,MaxLODSize=256,MaxLODSizeTexturePack=256,LODBias=2,LODBiasTexturePack=2,MinMagFilter=Linear,MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
-		TEXTUREGROUP_EffectsNotFiltered=(MinLODSize=32,MaxLODSize=256,MaxLODSizeTexturePack=256,LODBias=2,LODBiasTexturePack=2,MinMagFilter=Aniso,MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
-		TEXTUREGROUP_Skybox=(MinLODSize=64,MaxLODSize=256,MaxLODSizeTexturePack=256,LODBias=2,LODBiasTexturePack=2,MinMagFilter=Aniso,MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
-		TEXTUREGROUP_UI=(MinLODSize=1,MaxLODSize=2048,MaxLODSizeTexturePack=2048,LODBias=0,LODBiasTexturePack=0,MinMagFilter=Aniso,MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
-		TEXTUREGROUP_Lightmap=(MinLODSize=1,MaxLODSize=512,MaxLODSizeTexturePack=512,LODBias=3,LODBiasTexturePack=3,MinMagFilter=Aniso,MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
-		TEXTUREGROUP_Shadowmap=(MinLODSize=1,MaxLODSize=512,MaxLODSizeTexturePack=512,LODBias=3,LODBiasTexturePack=3,MinMagFilter=Aniso,MipFilter=Point,NumStreamedMips=3,MipGenSettings=TMGS_SimpleAverage)
-		TEXTUREGROUP_RenderTarget=(MinLODSize=1,MaxLODSize=2048,MaxLODSizeTexturePack=2048,LODBias=0,LODBiasTexturePack=0,MinMagFilter=Aniso,MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
-		TEXTUREGROUP_MobileFlattened=(MinLODSize=1,MaxLODSize=4096,MaxLODSizeTexturePack=4096,LODBias=1,LODBiasTexturePack=1,MinMagFilter=Linear,MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
-		TEXTUREGROUP_ProcBuilding_Face=(MinLODSize=1,MaxLODSize=1024,MaxLODSizeTexturePack=1024,LODBias=1,LODBiasTexturePack=1,MinMagFilter=Linear,MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
-		TEXTUREGROUP_ProcBuilding_LightMap=(MinLODSize=1,MaxLODSize=256,MaxLODSizeTexturePack=256,LODBias=1,LODBiasTexturePack=1,MinMagFilter=Linear,MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
-		TEXTUREGROUP_Terrain_Heightmap=(MinLODSize=1,MaxLODSize=4096,MaxLODSizeTexturePack=4096,LODBias=0,LODBiasTexturePack=0,MinMagFilter=Linear,MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
-		TEXTUREGROUP_Terrain_Weightmap=(MinLODSize=1,MaxLODSize=4096,MaxLODSizeTexturePack=4096,LODBias=0,LODBiasTexturePack=0,MinMagFilter=Linear,MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
-		TEXTUREGROUP_ImageBasedReflection=(MinLODSize=256,MaxLODSize=4096,MaxLODSizeTexturePack=4096,LODBias=1,LODBiasTexturePack=1,MinMagFilter=Linear,MipFilter=Linear,MipGenSettings=TMGS_Blur5)
-		TEXTUREGROUP_Bokeh=(MinLODSize=1,MaxLODSize=256,MaxLODSizeTexturePack=256,LODBias=1,LODBiasTexturePack=1,MinMagFilter=Linear,MipFilter=Linear,MipGenSettings=TMGS_SimpleAverage)
-		TEXTUREGROUP_UIStreamable=(MinLODSize=1,MaxLODSize=2048,MaxLODSizeTexturePack=2048,LODBias=0,LODBiasTexturePack=0,MinMagFilter=Aniso,MipFilter=Point,NumStreamedMips=0,MipGenSettings=TMGS_SimpleAverage)
-		bAllowRagdolling=true
+		TEXTUREGROUP_EffectsNotFiltered=(MinLODSize=32,MaxLODSize=256,MaxLODSizeTexturePack=256,LODBias=2,LODBiasTexturePack=2,MinMagFilter=${this.filtering},MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
+		TEXTUREGROUP_Skybox=(MinLODSize=64,MaxLODSize=256,MaxLODSizeTexturePack=256,LODBias=2,LODBiasTexturePack=2,MinMagFilter=${this.filtering},MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
+		TEXTUREGROUP_UI=(MinLODSize=1,MaxLODSize=2048,MaxLODSizeTexturePack=2048,LODBias=0,LODBiasTexturePack=0,MinMagFilter=${this.filtering},MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
+		TEXTUREGROUP_Lightmap=(MinLODSize=1,MaxLODSize=512,MaxLODSizeTexturePack=512,LODBias=3,LODBiasTexturePack=3,MinMagFilter=${this.filtering},MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
+		TEXTUREGROUP_Shadowmap=(MinLODSize=1,MaxLODSize=512,MaxLODSizeTexturePack=512,LODBias=3,LODBiasTexturePack=3,MinMagFilter=${this.filtering},MipFilter=Point,NumStreamedMips=3,MipGenSettings=TMGS_SimpleAverage)
+		TEXTUREGROUP_RenderTarget=(MinLODSize=1,MaxLODSize=2048,MaxLODSizeTexturePack=2048,LODBias=0,LODBiasTexturePack=0,MinMagFilter=${this.filtering},MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
+		TEXTUREGROUP_MobileFlattened=(MinLODSize=1,MaxLODSize=4096,MaxLODSizeTexturePack=4096,LODBias=1,LODBiasTexturePack=1,MinMagFilter=${this.filtering},MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
+		TEXTUREGROUP_ProcBuilding_Face=(MinLODSize=1,MaxLODSize=1024,MaxLODSizeTexturePack=1024,LODBias=1,LODBiasTexturePack=1,MinMagFilter=${this.filtering},MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
+		TEXTUREGROUP_ProcBuilding_LightMap=(MinLODSize=1,MaxLODSize=256,MaxLODSizeTexturePack=256,LODBias=1,LODBiasTexturePack=1,MinMagFilter=${this.filtering},MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
+		TEXTUREGROUP_Terrain_Heightmap=(MinLODSize=1,MaxLODSize=4096,MaxLODSizeTexturePack=4096,LODBias=0,LODBiasTexturePack=0,MinMagFilter=${this.filtering},MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
+		TEXTUREGROUP_Terrain_Weightmap=(MinLODSize=1,MaxLODSize=4096,MaxLODSizeTexturePack=4096,LODBias=0,LODBiasTexturePack=0,MinMagFilter=${this.filtering},MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
+		TEXTUREGROUP_ImageBasedReflection=(MinLODSize=256,MaxLODSize=4096,MaxLODSizeTexturePack=4096,LODBias=1,LODBiasTexturePack=1,MinMagFilter=${this.filtering},MipFilter=Linear,MipGenSettings=TMGS_Blur5)
+		TEXTUREGROUP_Bokeh=(MinLODSize=1,MaxLODSize=256,MaxLODSizeTexturePack=256,LODBias=1,LODBiasTexturePack=1,MinMagFilter=${this.filtering},MipFilter=Linear,MipGenSettings=TMGS_SimpleAverage)
+		TEXTUREGROUP_UIStreamable=(MinLODSize=1,MaxLODSize=2048,MaxLODSizeTexturePack=2048,LODBias=0,LODBiasTexturePack=0,MinMagFilter=${this.filtering},MipFilter=Point,NumStreamedMips=0,MipGenSettings=TMGS_SimpleAverage)
+		bAllowRagdolling=${this.ragdolls}
 		bAllowParticleSystemPerfBias=True
 		bAllowPerfThrottling=false
 		PerfScalingFramerateStart=30.000000
@@ -262,12 +272,12 @@ class ChaosSystemSettings {
 		MaterialQualityLevel=1
 		SettingsVersion=9
 		SpeedTreeWind=False
-		TEXTUREGROUP_NPC=(MinLODSize=64,MaxLODSize=512,MaxLODSizeTexturePack=512,LODBias=1,LODBiasTexturePack=1,MinMagFilter=Aniso,MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
-		TEXTUREGROUP_NPCNormalMap=(MinLODSize=64,MaxLODSize=256,MaxLODSizeTexturePack=256,LODBias=1,LODBiasTexturePack=1,MinMagFilter=Aniso,MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
-		TEXTUREGROUP_NPCSpecular=(MinLODSize=64,MaxLODSize=256,MaxLODSizeTexturePack=256,LODBias=1,LODBiasTexturePack=1,MinMagFilter=Aniso,MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
-		TEXTUREGROUP_WorldDetail=(MinLODSize=32,MaxLODSize=256,MaxLODSizeTexturePack=256,LODBias=3,LODBiasTexturePack=3,MinMagFilter=Aniso,MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
-		TEXTUREGROUP_TitleScreenPreview=(MinLODSize=1,MaxLODSize=2048,MaxLODSizeTexturePack=2048,LODBias=0,LODBiasTexturePack=0,MinMagFilter=Aniso,MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
-		TEXTUREGROUP_ColorLookupTable=(MinLODSize=1,MaxLODSize=4096,MaxLODSizeTexturePack=1,LODBias=0,LODBiasTexturePack=0,MinMagFilter=Aniso,MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
+		TEXTUREGROUP_NPC=(MinLODSize=${this.charTextureRes},MaxLODSize=${this.charTextureRes},MaxLODSizeTexturePack=${this.charTextureRes},LODBias=1,LODBiasTexturePack=1,MinMagFilter=${this.filtering},MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
+		TEXTUREGROUP_NPCNormalMap=(MinLODSize=${this.charTextureRes},MaxLODSize=${this.charTextureRes},MaxLODSizeTexturePack=${this.charTextureRes},LODBias=1,LODBiasTexturePack=1,MinMagFilter=${this.filtering},MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
+		TEXTUREGROUP_NPCSpecular=(MinLODSize=${this.charTextureRes},MaxLODSize=${this.charTextureRes},MaxLODSizeTexturePack=${this.charTextureRes},LODBias=1,LODBiasTexturePack=1,MinMagFilter=${this.filtering},MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
+		TEXTUREGROUP_WorldDetail=(MinLODSize=${this.mapTextureRes},MaxLODSize=${this.mapTextureRes},MaxLODSizeTexturePack=${this.mapTextureRes},LODBias=3,LODBiasTexturePack=3,MinMagFilter=${this.filtering},MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
+		TEXTUREGROUP_TitleScreenPreview=(MinLODSize=1,MaxLODSize=2048,MaxLODSizeTexturePack=2048,LODBias=0,LODBiasTexturePack=0,MinMagFilter=${this.filtering},MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
+		TEXTUREGROUP_ColorLookupTable=(MinLODSize=1,MaxLODSize=4096,MaxLODSizeTexturePack=1,LODBias=0,LODBiasTexturePack=0,MinMagFilter=${this.filtering},MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
 
 		[SystemSettingsBucket1]
 		BasedOn=SystemSettings

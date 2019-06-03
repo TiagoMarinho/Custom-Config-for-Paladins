@@ -1,13 +1,40 @@
 let optionsDictionary = {
-	resolutionScale: {
-		name: "Resolution Scale", // Label displayed to user
-		originalKey: "screenPercentage", // Property that has its value changed
+	resolution: {
+		name: "Resolution", // Label displayed to user
+		originalKey: "resolution", // Property that has its value changed
 		type: Option,
-		states: [25, 33, 50, 66, 75, 100, 150, 200], // Values to use
-		userStates: ["25%", "33%", "50%", "66%", "75%", "100%", "150%", "200%"], // Value labels
-		defaultIndex: 4, // Initial value index
-		description: "At what percentage of the chosen screen resolution the 3D scene will be rendered with.", // Description shown to user
-		warning: "Values higher than 100% will be downscaled to fit the screen and have a huge impact on performance." // Warning shown to user
+		states: [{x: 1920, y: 1080}, {x: 1600, y: 900},  {x: 1366, y: 768}, {x: 1280, y: 720}, {x: 800, y: 600}], // Values to use
+		userStates: ["1920x1080", "1600x900", "1366x768", "1280x720", "800x600"], // Value labels
+		defaultIndex: 0, // Initial value index
+		description: "Screen resolution." // Description shown to user
+	},
+	resolutionScale: {
+		name: "Resolution Scale",
+		originalKey: "screenPercentage", 
+		type: Option,
+		states: [25, 33, 50, 66, 75, 100], 
+		userStates: ["25%", "33%", "50%", "66%", "75%", "100%"], 
+		defaultIndex: 4,
+		description: "At what percentage of the chosen screen resolution the 3D scene will be rendered with.",
+		warning: "Lowest values can decrease visibility."
+	},
+	dynamicLights: {
+		name: "Dynamic Lights",
+		originalKey: "dynamicLights",
+		type: Option,
+		states: [false, true],
+		userStates: ["Disabled", "Enabled"],
+		defaultIndex: 0,
+		description: "Whether to allow moving objects to emit light into the scene."
+	},
+	dynamicShadows: {
+		name: "Dynamic Shadows",
+		originalKey: "dynamicShadows",
+		type: Option,
+		states: [false, true],
+		userStates: ["Disabled", "Enabled"],
+		defaultIndex: 0,
+		description: "Whether to allow moving objects to cast shadows."
 	},
 	decals: {
 		name: "Decals",
@@ -18,9 +45,20 @@ let optionsDictionary = {
 		defaultIndex: 0,
 		description: "Decals are textures that overlay other textures in objects, like sprays.",
 		warning: "Disabling this option will prevent Mal'Damba's gourd and Viktor's ultimate ground marker textures from displaying."
-	},/*
+	},
+	SSAA: {
+		name: "SSAA",
+		originalKey: "ssaa",
+		type: Option,
+		states: [1.0, 1.5, 2.0],
+		userStates: ["Disabled", "1.5x", "2.0x"],
+		defaultIndex: 0,
+		description: "Supersample Antialiasing: Smoothes sharp edges by rendering the scene at a higher resolution and downscaling it afterwards.",
+		warning: "Enabling this option has a huge impact on performance."
+	},
 	ragdolls: {
 		name: "Ragdolls",
+		originalKey: "ragdolls",
 		type: Option,
 		states: [true, false],
 		userStates: ["Enabled", "Disabled"],
@@ -28,6 +66,16 @@ let optionsDictionary = {
 		description: "Physics simulation on character death instead of its default death animation.",
 		warning: "Disabling this option may cause issues with Shattered and Golden weapon effects."
 	},
+	textureFiltering: {
+		name: "Texture Filtering",
+		originalKey: "filtering",
+		type: Option,
+		states: ["Point", "Linear", "Aniso"],
+		userStates: ["Disabled", "Bilinear/Trilinear", "Anisotropic"],
+		defaultIndex: 2,
+		description: "How to interpolate pixel values for low resolution textures or surfaces seen from extreme angles.",
+		warning: "Disabling this option will have a huge visual impact, with little to no gain on performance."
+	},/*
 	skeletalMeshLODBias: {
 		name: "SkeletalMeshLODBias",
 		type: Option,
@@ -43,28 +91,30 @@ let optionsDictionary = {
 		userStates: ["Low", "Medium", "High"],
 		defaultIndex: 0,
 		description: "Controls biasing of the Level Of Detail for particles, lower values being better looking and higher values giving better performance."
-	},
+	},*/
 	characterTextureRes: {
 		name: "Character Texture Resolution",
+		originalKey: "charTextureRes",
 		type: Option,
 		states: [2, 64, 512, 1024],
-		userStates: ["Solid (2x2)", "Low (64x64)", "Medium (512x512)", "High (1024x1024)", "Ultra (2048x2048)"],
+		userStates: ["Solid (2x2)", "Low (64x64)", "Medium (512x512)", "High (1024x1024)"],
 		defaultIndex: 1
 	},
 	weaponTextureRes: {
 		name: "Weapon Texture Resolution",
+		originalKey: "weaponTextureRes",
 		type: Option,
 		states: [2, 64, 512, 1024],
-		userStates: ["Solid (2x2)", "Low (64x64)", "Medium (512x512)", "High (1024x1024)", "Ultra (2048x2048)"],
+		userStates: ["Solid (2x2)", "Low (64x64)", "Medium (512x512)", "High (1024x1024)"],
 		defaultIndex: 1
 	},
 	environmentTextureRes: {
 		name: "Map Texture Resolution",
 		type: Option,
 		states: [2, 64, 512, 1024],
-		userStates: ["Solid (2x2)", "Low (64x64)", "Medium (512x512)", "High (1024x1024)", "Ultra (2048x2048)"],
+		userStates: ["Solid (2x2)", "Low (64x64)", "Medium (512x512)", "High (1024x1024)"],
 		defaultIndex: 1
-	},
+	},/*
 	MSAA: {
 		name: "MSAA",
 		type: Option,
@@ -80,15 +130,16 @@ let optionsDictionary = {
 		userStates: ["Enabled", "Disabled"],
 		defaultIndex: 0,
 		description: "Fast Approximate Antialiasing: Smoothes sharp edges using a post processing filter at a low performance cost, with less precision than MSAA."
-	},
+	},*/
 	directX: {
 		name: "API",
+		originalKey: "dx11",
 		type: Option,
 		states: [false, true],
 		userStates: ["DirectX 9", "DirectX 11"],
 		defaultIndex: 1,
-		description: "Whether to use DirectX 9 or DirectX 11. Using the latter is highly recommended, especially with more recent hardware."
-	},
+		description: "Whether to use DirectX 9 or DirectX 11."
+	},/*
 	texturePool: {
 		name: "Video Memory Texture Pool",
 		type: Option,
@@ -105,16 +156,17 @@ let optionsDictionary = {
 		userStates: ["Low", "Medium", "High"],
 		defaultIndex: 0,
 		description: "How complex the material shaders can get. This has a big performance impact."
-	},
+	},*/
 	verticalSync: {
-		name: "VSync",
+		name: "V-Sync",
+		originalKey: "vsync",
 		type: Option,
 		states: [false, true],
 		userStates: ["Disabled", "Enabled"],
 		defaultIndex: 0,
 		description: "Limits the FPS to the screen refresh rate.",
 		warning: "Increases input lag considerably when enabled, making it harder to aim and hurting player reaction times."
-	},
+	},/*
 	volumetrics: {
 		name: "Volumetrics",
 		type: Option,
