@@ -16,34 +16,45 @@ h1#maintitle {
 	text-align: center;
 	color: #ebedf3;
 }
-ul {
+ul, #submit {
 	margin: 2em 2.5%; padding: 0;
 	width: 95%;
+	text-transform: uppercase;
+	font-weight: 700;
 }
 ul > li {
-	position: relative;
-	text-transform: uppercase;
-	font-size: 18px;
-	font-weight: 700;
-	margin: .3em 0; padding: .6em;
 	list-style-type: none;
+}
+#presets > ul > li {
+	display: inline-block;
+	width: 33.333%;
+	padding: 1em 0;
+	margin: 0;
+	text-align: center;
+	border: 1px solid #22373a;
+	background: rgba(255, 255, 255, 0.666);
+}
+#options > ul > li {
+	position: relative;
+	font-size: 18px;
+	margin: .3em 0; padding: .6em;
 	border-radius: 2.5px;
 	border: 1px solid #22373a;
 	background: rgba(255, 255, 255, 0.666);
 }
-ul > li:hover {
+#options > ul > li:hover {
 	background: #49b0ac;
 	outline: 0;
 	border: 1px solid rgba(255, 255, 255, 0.5);
 }
-ul > li:hover > div.label, ul > li:hover > div.option > input, ul > li:hover > div.option {
+#options > ul > li:hover > div.label, ul > li:hover > div.option > input, ul > li:hover > div.option {
 	color: #ebedf3;
 }
-ul > li > div.label {
+#options > ul > li > div.label {
 	display: inline-block;
 	width: 70%;
 }
-ul > li > div.option {
+#options > ul > li > div.option {
 	display: inline-block;
 	float: right;
 	width: 30%;
@@ -51,7 +62,7 @@ ul > li > div.option {
 	white-space: nowrap;
 	overflow: hidden;
 }
-ul > li > div.option > input {
+#options > ul > li > div.option > input {
 	cursor: pointer;
 	border: 0;
 	color: #22373a;
@@ -59,13 +70,16 @@ ul > li > div.option > input {
 	font-weight: 700;
 	background: transparent;
 }
-ul > li > div.option > input.open {
+#options > ul > li:hover > div.option > input {
+	color: #ebedf3;
+}
+#options > ul > li > div.option > input.open {
 	float: left;
 }
-ul > li > div.option > input.close {
+#options > ul > li > div.option > input.close {
 	float: right;
 }
-ul > li > span.description {
+#options > ul > li > span.description {
 	opacity: 0.0;
 	display: block;
 	position: absolute;
@@ -83,7 +97,7 @@ ul > li > span.description {
 	pointer-events: none;
 }
 
-ul > li > span.description:after {
+#options > ul > li > span.description:after {
 	content: '';
 	position: absolute;
 	top: 0;
@@ -96,12 +110,35 @@ ul > li > span.description:after {
 	margin-left: -10px;
 	margin-top: -10px;
 }
-ul > li:hover > span.description {
+#options > ul > li:hover > span.description {
 	opacity: 1.0;
 }
-ul > li > span.description > span.warning {
+#options > ul > li > span.description > span.warning {
 	color: #f44;
 }
-ul > li > span.description > span.warning:before {
+#options > ul > li > span.description > span.warning:before {
 	content: ' ';
+}
+#submit {
+	text-align: center;
+}
+#submit > a {
+	font-family: "Open Sans", arial, sans-serif;
+	font-size: 16px;
+	text-transform: uppercase;
+	font-weight: 700;
+	text-decoration: none;
+	cursor: pointer;
+	border: 0;
+	padding: 1em 2em;
+	border-radius: 2.5px;
+	border: 1px solid #22373a;
+	color: #22373a;
+	background: rgba(255, 255, 255, 0.666);
+}
+#submit > a:hover {
+	color: #ebedf3;
+	background: #49b0ac;
+	outline: 0;
+	border: 1px solid rgba(255, 255, 255, 0.5);
 }
