@@ -20,9 +20,11 @@ class ChaosSystemSettings {
 		this.doubleBuffering = false
 		this.tripleBuffering = false
 
+		this.resolution = {x: 1920, y: 1080}
+		this.screenPercentage = 100
 	}
 	get result () {
-		chaosSystemSettings = `[SystemSettings]
+		let chaosSystemSettings = `[SystemSettings]
 		MaxActiveDecals=${this.maxDecals}
 		GameSettingsVersion=-1
 		StaticDecals=${this.staticDecals}
@@ -96,9 +98,9 @@ class ChaosSystemSettings {
 		ShadowFadeResolution=128
 		PreShadowFadeResolution=16
 		ShadowFadeExponent=0.250000
-		ResX=1920
-		ResY=1080
-		ScreenPercentage=100.000000
+		ResX=${this.resolution.x}
+		ResY=${this.resolution.y}
+		ScreenPercentage=${this.screenPercentage}.000000
 		SceneCaptureStreamingMultiplier=1.000000
 		ShadowTexelsPerPixel=2.000000
 		PreShadowResolutionFactor=0.500000
@@ -347,7 +349,7 @@ class ChaosSystemSettings {
 		TEXTUREGROUP_EffectsNotFiltered=(MinLODSize=32,MaxLODSize=256,LODBias=2,MinMagFilter=aniso,MipFilter=point)
 		TEXTUREGROUP_Skybox=(MinLODSize=64,MaxLODSize=256,LODBias=2,MinMagFilter=aniso,MipFilter=point)
 		TEXTUREGROUP_UI=(MinLODSize=1,MaxLODSize=2048,LODBias=0,MinMagFilter=aniso,MipFilter=point)
-		TEXTUREGROUP_UIStreamable=(MinLODSize=1,MaxLODSize=2048,LODBias=0,MinMagFilter=aniso,MipFilter=point,NumStreamedMips=0) ;$$BME: UI Texture Streaming
+		TEXTUREGROUP_UIStreamable=(MinLODSize=1,MaxLODSize=2048,LODBias=0,MinMagFilter=aniso,MipFilter=point,NumStreamedMips=0)
 		TEXTUREGROUP_Lightmap=(MinLODSize=1,MaxLODSize=512,LODBias=3,MinMagFilter=aniso,MipFilter=point)
 		TEXTUREGROUP_Shadowmap=(MinLODSize=1,MaxLODSize=512,LODBias=3,MinMagFilter=aniso,MipFilter=point,NumStreamedMips=3)
 		TEXTUREGROUP_RenderTarget=(MinLODSize=1,MaxLODSize=2048,LODBias=0,MinMagFilter=aniso,MipFilter=point)
@@ -444,7 +446,7 @@ class ChaosSystemSettings {
 		TEXTUREGROUP_EffectsNotFiltered=(MinLODSize=32,MaxLODSize=512,LODBias=2,MinMagFilter=aniso,MipFilter=point)
 		TEXTUREGROUP_Skybox=(MinLODSize=128,MaxLODSize=512,LODBias=2,MinMagFilter=aniso,MipFilter=point)
 		TEXTUREGROUP_UI=(MinLODSize=1,MaxLODSize=2048,LODBias=0,MinMagFilter=aniso,MipFilter=point)
-		TEXTUREGROUP_UIStreamable=(MinLODSize=1,MaxLODSize=2048,LODBias=0,MinMagFilter=aniso,MipFilter=point,NumStreamedMips=0) ;$$BME: UI Texture Streaming
+		TEXTUREGROUP_UIStreamable=(MinLODSize=1,MaxLODSize=2048,LODBias=0,MinMagFilter=aniso,MipFilter=point,NumStreamedMips=0)
 		TEXTUREGROUP_Lightmap=(MinLODSize=1,MaxLODSize=512,LODBias=2,MinMagFilter=aniso,MipFilter=point)
 		TEXTUREGROUP_Shadowmap=(MinLODSize=1,MaxLODSize=512,LODBias=2,MinMagFilter=aniso,MipFilter=point,NumStreamedMips=3)
 		TEXTUREGROUP_RenderTarget=(MinLODSize=1,MaxLODSize=2048,LODBias=0,MinMagFilter=aniso,MipFilter=point)
@@ -541,7 +543,7 @@ class ChaosSystemSettings {
 		TEXTUREGROUP_EffectsNotFiltered=(MinLODSize=128,MaxLODSize=512,LODBias=1,MinMagFilter=aniso,MipFilter=point)
 		TEXTUREGROUP_Skybox=(MinLODSize=256,MaxLODSize=1024,LODBias=1,MinMagFilter=aniso,MipFilter=point)
 		TEXTUREGROUP_UI=(MinLODSize=1,MaxLODSize=2048,LODBias=0,MinMagFilter=aniso,MipFilter=point)
-		TEXTUREGROUP_UIStreamable=(MinLODSize=1,MaxLODSize=2048,LODBias=0,MinMagFilter=aniso,MipFilter=point,NumStreamedMips=0) ;$$BME: UI Texture Streaming
+		TEXTUREGROUP_UIStreamable=(MinLODSize=1,MaxLODSize=2048,LODBias=0,MinMagFilter=aniso,MipFilter=point,NumStreamedMips=0)
 		TEXTUREGROUP_Lightmap=(MinLODSize=1,MaxLODSize=512,LODBias=1,MinMagFilter=aniso,MipFilter=point)
 		TEXTUREGROUP_Shadowmap=(MinLODSize=1,MaxLODSize=512,LODBias=1,MinMagFilter=aniso,MipFilter=point,NumStreamedMips=3)
 		TEXTUREGROUP_RenderTarget=(MinLODSize=1,MaxLODSize=2048,LODBias=0,MinMagFilter=aniso,MipFilter=point)
@@ -638,7 +640,7 @@ class ChaosSystemSettings {
 		TEXTUREGROUP_EffectsNotFiltered=(MinLODSize=256,MaxLODSize=512,LODBias=1,MinMagFilter=aniso,MipFilter=point)
 		TEXTUREGROUP_Skybox=(MinLODSize=256,MaxLODSize=1024,LODBias=1,MinMagFilter=aniso,MipFilter=point)
 		TEXTUREGROUP_UI=(MinLODSize=1,MaxLODSize=2048,LODBias=0,MinMagFilter=aniso,MipFilter=point)
-		TEXTUREGROUP_UIStreamable=(MinLODSize=1,MaxLODSize=2048,LODBias=0,MinMagFilter=aniso,MipFilter=point,NumStreamedMips=0) ;$$BME: UI Texture Streaming
+		TEXTUREGROUP_UIStreamable=(MinLODSize=1,MaxLODSize=2048,LODBias=0,MinMagFilter=aniso,MipFilter=point,NumStreamedMips=0)
 		TEXTUREGROUP_Lightmap=(MinLODSize=1,MaxLODSize=1024,LODBias=1,MinMagFilter=aniso,MipFilter=point)
 		TEXTUREGROUP_Shadowmap=(MinLODSize=1,MaxLODSize=1024,LODBias=1,MinMagFilter=aniso,MipFilter=point,NumStreamedMips=3)
 		TEXTUREGROUP_RenderTarget=(MinLODSize=1,MaxLODSize=2048,LODBias=0,MinMagFilter=aniso,MipFilter=point)
@@ -735,7 +737,7 @@ class ChaosSystemSettings {
 		TEXTUREGROUP_EffectsNotFiltered=(MinLODSize=256,MaxLODSize=512,LODBias=0,MinMagFilter=aniso,MipFilter=linear)
 		TEXTUREGROUP_Skybox=(MinLODSize=512,MaxLODSize=2048,LODBias=0,MaxLODSizeTexturePack=4096,LODBiasTexturePack=0,MinMagFilter=aniso,MipFilter=linear)
 		TEXTUREGROUP_UI=(MinLODSize=1,MaxLODSize=2048,LODBias=0,MinMagFilter=aniso,MipFilter=linear)
-		TEXTUREGROUP_UIStreamable=(MinLODSize=1,MaxLODSize=2048,LODBias=0,MinMagFilter=aniso,MipFilter=point,NumStreamedMips=0) ;$$BME: UI Texture Streaming
+		TEXTUREGROUP_UIStreamable=(MinLODSize=1,MaxLODSize=2048,LODBias=0,MinMagFilter=aniso,MipFilter=point,NumStreamedMips=0)
 		TEXTUREGROUP_Lightmap=(MinLODSize=1,MaxLODSize=2048,LODBias=0,MinMagFilter=aniso,MipFilter=linear)
 		TEXTUREGROUP_Shadowmap=(MinLODSize=1,MaxLODSize=2048,LODBias=0,MinMagFilter=aniso,MipFilter=linear,NumStreamedMips=3)
 		TEXTUREGROUP_RenderTarget=(MinLODSize=1,MaxLODSize=2048,LODBias=0,MinMagFilter=aniso,MipFilter=linear)
@@ -1063,7 +1065,7 @@ class ChaosSystemSettings {
 		TEXTUREGROUP_EffectsNotFiltered=(MinLODSize=256,MaxLODSize=512,LODBias=0,MinMagFilter=aniso,MipFilter=point)
 		TEXTUREGROUP_Skybox=(MinLODSize=512,MaxLODSize=2048,LODBias=0,MinMagFilter=aniso,MipFilter=point)
 		TEXTUREGROUP_UI=(MinLODSize=1,MaxLODSize=2048,LODBias=0,MinMagFilter=aniso,MipFilter=point)
-		TEXTUREGROUP_UIStreamable=(MinLODSize=1,MaxLODSize=2048,LODBias=0,MinMagFilter=aniso,MipFilter=point,NumStreamedMips=0) ;$$BME: UI Texture Streaming
+		TEXTUREGROUP_UIStreamable=(MinLODSize=1,MaxLODSize=2048,LODBias=0,MinMagFilter=aniso,MipFilter=point,NumStreamedMips=0)
 		TEXTUREGROUP_Lightmap=(MinLODSize=1,MaxLODSize=2048,LODBias=0,MinMagFilter=aniso,MipFilter=point)
 		TEXTUREGROUP_Shadowmap=(MinLODSize=64,MaxLODSize=2048,LODBias=0,MinMagFilter=aniso,MipFilter=point,NumStreamedMips=3)
 		TEXTUREGROUP_RenderTarget=(MinLODSize=1,MaxLODSize=2048,LODBias=0,MinMagFilter=aniso,MipFilter=point)
@@ -1089,5 +1091,6 @@ class ChaosSystemSettings {
 
 
 		`
-		return chaosSystemSettings
+		return chaosSystemSettings.replace(/\s\s\s/g, "\n").replace(/\s/g, "\n");
 	}
+}

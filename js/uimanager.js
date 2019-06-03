@@ -1,7 +1,9 @@
 class UIManager {
-	constructor (wrapper, settings) {
+	constructor (chaosSystemSettings, wrapper, settings, submit) {
 		this.wrapper = wrapper
 		this.settings = settings
+		this.submit = submit
+		this.chaosSystemSettings = chaosSystemSettings
 	}
 	updateUI (settings = this.settings) {
 		this.wrapper.innerHTML = ``
@@ -10,6 +12,7 @@ class UIManager {
 		for (let id = 0; id < settings.length; ++id) (function(id){
 
 			let option = settings[id]
+			this.chaosSystemSettings[option.originalKey] = option.value
 
 			let li = document.createElement("li")
 			ul.appendChild(li)
@@ -65,5 +68,8 @@ class UIManager {
 				this.updateUI()
 			}
 		}).bind(this)(id)
+
+		submit.download = `ChaosSystemSettings.ini`
+		submit.href = `data:application/octet-stream,${chaosSystemSettings.result}`
 	}
 }

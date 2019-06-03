@@ -1,23 +1,24 @@
 let optionsDictionary = {
 	resolutionScale: {
-		name: "Resolution Scale", 
-		originalKey: "ScreenPercentage",
+		name: "Resolution Scale", // Label displayed to user
+		originalKey: "screenPercentage", // Property that has its value changed
 		type: Option,
-		states: [25, 33, 50, 66, 75, 100, 150, 200],
-		userStates: ["25%", "33%", "50%", "66%", "75%", "100%", "150%", "200%"],
-		defaultIndex: 4,
-		description: "At what percentage of the chosen screen resolution the 3D scene will be rendered with.",
-		warning: "Values higher than 100% will be downscaled to fit the screen and have a huge impact on performance."
+		states: [25, 33, 50, 66, 75, 100, 150, 200], // Values to use
+		userStates: ["25%", "33%", "50%", "66%", "75%", "100%", "150%", "200%"], // Value labels
+		defaultIndex: 4, // Initial value index
+		description: "At what percentage of the chosen screen resolution the 3D scene will be rendered with.", // Description shown to user
+		warning: "Values higher than 100% will be downscaled to fit the screen and have a huge impact on performance." // Warning shown to user
 	},
 	decals: {
 		name: "Decals",
+		originalKey: "staticDecals",
 		type: Option,
 		states: [true, false],
 		userStates: ["Enabled", "Disabled"],
 		defaultIndex: 0,
 		description: "Decals are textures that overlay other textures in objects, like sprays.",
 		warning: "Disabling this option will prevent Mal'Damba's gourd and Viktor's ultimate ground marker textures from displaying."
-	},
+	},/*
 	ragdolls: {
 		name: "Ragdolls",
 		type: Option,
@@ -122,5 +123,5 @@ let optionsDictionary = {
 		defaultIndex: 1,
 		description: "General smoke and atmospheric effects.",
 		warning: "Disabling this makes Maeve's ultimate not turn everything black so map is still visible, but players will be properly hidden when not inside the visibility radius."
-	},
+	},*/
 }
