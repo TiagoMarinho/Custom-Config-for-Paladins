@@ -6,6 +6,7 @@
 	<link rel="icon" href="img/favicon.png" type="image/x-icon" />
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<script src="js/instructions.js"></script>
 	<script src="js/chaossystemsettingstring.js"></script>
 	<script src="js/operation.js"></script>
 	<script src="js/option.js"></script>
@@ -16,14 +17,14 @@
 	<script src="js/optionsdictionary.js"></script>
 	<script src="js/optionsdictionarytooptionsarray.js"></script>
 	<script src="js/uimanager.js"></script>
-	<script src="js/generateconfig.js"></script>
 </head>
 <body>
 	<h1 id="maintitle">Custom Config for Paladins</h1>
+	<h2>by tiagomeraki</h2>
 	<div id="options">
 	</div>
 	<div id="submit">
-		<a id="submitter" href="">Generate file</a>
+		<a id="submitter" href="">Generate file</a> <a onclick="alert(instructions)">Instructions</a>
 	</div>
 	<script>
 		let customSettings = optionsDictionaryToOptionsArray(optionsDictionary)
