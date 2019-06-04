@@ -124,6 +124,13 @@ ul > li {
 #options > ul > li > span.description > span.warning:before {
 	content: ' ';
 }
+#options > ul > li > span.description > span.impact {
+	display: block;
+	color: #da6;
+}
+#options > ul > li > span.description > span.impact:before {
+	content: 'Performance Impact: ';
+}
 #submit {
 	text-align: center;
 }
@@ -147,6 +154,7 @@ ul > li {
 	outline: 0;
 	border: 1px solid rgba(255, 255, 255, 0.5);
 }
-.hidden {
+#options > ul > li > div.option > input.hidden {
+	cursor: default;
 	opacity: 0.25;
 }
