@@ -1,5 +1,5 @@
 class Option {
-	constructor (name, originalKey, states, userStates, operation = Operation.replace, defaultIndex = 0, description = "", warning = "") {
+	constructor (name, originalKey, states, userStates, operation = Operation.replace, defaultIndex = 0, description = "", warning = "", impact = "") {
 		this.name = name
 		this.originalKey = originalKey
 		this.states = states
@@ -8,6 +8,7 @@ class Option {
 		this.currentStateIndex = defaultIndex
 		this.description = description
 		this.warning = warning
+		this.impact = impact
 	}
 	next () {
 		if (this.states.length - 1 > this.currentStateIndex)

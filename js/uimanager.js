@@ -22,7 +22,7 @@ class UIManager {
 			divLabel.className = "label"
 			divLabel.innerHTML = option.name
 
-			if (option.description.length > 0 || option.warning.length > 0) {
+			if (option.description.length > 0 || option.warning.length > 0 || option.impact.length > 0) {
 				let spanDescription = document.createElement("span")
 				li.appendChild(spanDescription)
 				spanDescription.className = "description"
@@ -33,6 +33,12 @@ class UIManager {
 					spanDescription.appendChild(spanWarning)
 					spanWarning.className = "warning"
 					spanWarning.innerHTML = option.warning
+				}
+				if (option.impact.length > 0) {
+					let spanImpact = document.createElement("span")
+					spanDescription.appendChild(spanImpact)
+					spanImpact.className = "impact"
+					spanImpact.innerHTML = option.impact
 				}
 			}
 

@@ -12,8 +12,8 @@ class ChaosSystemSettings {
 		this.bloom = false
 		this.distortion = false
 		this.downsampledTranslucency = true
-		this.speedTree = false
-		this.volumetrics = false
+		this.speedTree = true
+		this.volumetrics = true
 		this.floatingPointRenderTargets = true
 		this.oneFrameThreadLag = true
 		this.vsync = false
@@ -24,6 +24,8 @@ class ChaosSystemSettings {
 		this.resolution = {x: 1920, y: 1080}
 		this.screenPercentage = 100
 		this.ssaa = 1.0
+		this.fxaa = 0
+		this.msaa = 1
 		this.dx11 = true
 		this.ragdolls = true
 
@@ -36,6 +38,8 @@ class ChaosSystemSettings {
 		this.skeletalMeshLODBias = 1
 		this.particleLODBias = 10
 		this.staticMeshLODBias = 1
+
+		this.perFrameYield = true
 	}
 	get result () {
 		let chaosSystemSettings = `[SystemSettings]
@@ -99,7 +103,7 @@ class ChaosSystemSettings {
 		MaxDrawDistanceScale=0.800000
 		ShadowFilterQualityBias=-1
 		MaxAnisotropy=0
-		MaxMultisamples=1
+		MaxMultisamples=${this.msaa}
 		bAllowD3D9MSAA=False
 		bAllowTemporalAA=False
 		TemporalAA_MinDepth=500.000000
@@ -149,8 +153,8 @@ class ChaosSystemSettings {
 		SecondaryDisplayMaximumWidth=1280
 		SecondaryDisplayMaximumHeight=720
 		AllowLogitechLedSdk=True
-		AllowPerFrameSleep=True
-		AllowPerFrameYield=True
+		AllowPerFrameSleep=${this.perFrameYield}
+		AllowPerFrameYield=${this.perFrameYield}
 		MobileFeatureLevel=0
 		MobileFog=True
 		MobileHeightFog=False
@@ -234,9 +238,9 @@ class ChaosSystemSettings {
 		TEXTUREGROUP_Weapon=(MinLODSize=${this.weaponTextureRes},MaxLODSize=${this.weaponTextureRes},MaxLODSizeTexturePack=${this.weaponTextureRes},LODBias=2,LODBiasTexturePack=2,MinMagFilter=${this.filtering},MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
 		TEXTUREGROUP_WeaponNormalMap=(MinLODSize=${this.weaponTextureRes},MaxLODSize=${this.weaponTextureRes},MaxLODSizeTexturePack=${this.weaponTextureRes},LODBias=2,LODBiasTexturePack=2,MinMagFilter=${this.filtering},MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
 		TEXTUREGROUP_WeaponSpecular=(MinLODSize=${this.weaponTextureRes},MaxLODSize=${this.weaponTextureRes},MaxLODSizeTexturePack=${this.weaponTextureRes},LODBias=2,LODBiasTexturePack=2,MinMagFilter=${this.filtering},MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
-		TEXTUREGROUP_Vehicle=(MinLODSize=64,MaxLODSize=512,MaxLODSizeTexturePack=512,LODBias=2,LODBiasTexturePack=2,MinMagFilter=${this.filtering},MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
-		TEXTUREGROUP_VehicleNormalMap=(MinLODSize=64,MaxLODSize=512,MaxLODSizeTexturePack=512,LODBias=2,LODBiasTexturePack=2,MinMagFilter=${this.filtering},MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
-		TEXTUREGROUP_VehicleSpecular=(MinLODSize=64,MaxLODSize=512,MaxLODSizeTexturePack=512,LODBias=2,LODBiasTexturePack=2,MinMagFilter=${this.filtering},MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
+		TEXTUREGROUP_Vehicle=(MinLODSize=${this.charTextureRes},MaxLODSize=${this.charTextureRes},MaxLODSizeTexturePack=${this.charTextureRes},LODBias=2,LODBiasTexturePack=2,MinMagFilter=${this.filtering},MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
+		TEXTUREGROUP_VehicleNormalMap=(MinLODSize=${this.charTextureRes},MaxLODSize=${this.charTextureRes},MaxLODSizeTexturePack=${this.charTextureRes},LODBias=2,LODBiasTexturePack=2,MinMagFilter=${this.filtering},MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
+		TEXTUREGROUP_VehicleSpecular=(MinLODSize=${this.charTextureRes},MaxLODSize=${this.charTextureRes},MaxLODSizeTexturePack=${this.charTextureRes},LODBias=2,LODBiasTexturePack=2,MinMagFilter=${this.filtering},MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
 		TEXTUREGROUP_Cinematic=(MinLODSize=128,MaxLODSize=256,MaxLODSizeTexturePack=256,LODBias=2,LODBiasTexturePack=2,MinMagFilter=${this.filtering},MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
 		TEXTUREGROUP_Effects=(MinLODSize=32,MaxLODSize=256,MaxLODSizeTexturePack=256,LODBias=2,LODBiasTexturePack=2,MinMagFilter=Linear,MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
 		TEXTUREGROUP_EffectsNotFiltered=(MinLODSize=32,MaxLODSize=256,MaxLODSizeTexturePack=256,LODBias=2,LODBiasTexturePack=2,MinMagFilter=${this.filtering},MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
@@ -269,7 +273,7 @@ class ChaosSystemSettings {
 		TexturePoolSize=150
 		AllowD3D11=False
 		PreferD3D11=False
-		FXAAQuality=0
+		FXAAQuality=${this.fxaa}
 		AllowScreenDoorFade=False
 		AllowScreenDoorLODFading=False
 		bAllowFog=False
