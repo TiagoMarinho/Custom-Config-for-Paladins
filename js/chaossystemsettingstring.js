@@ -32,6 +32,10 @@ class ChaosSystemSettings {
 		this.charTextureRes = 64
 		this.weaponTextureRes = 64
 		this.mapTextureRes = 64
+
+		this.skeletalMeshLODBias = 1
+		this.particleLODBias = 10
+		this.staticMeshLODBias = 1
 	}
 	get result () {
 		let chaosSystemSettings = `[SystemSettings]
@@ -89,8 +93,8 @@ class ChaosSystemSettings {
 		bAllowPostprocessMLAA=False
 		bAllowHighQualityMaterials=False
 		MaxFilterBlurSampleCount=16
-		SkeletalMeshLODBias=1
-		ParticleLODBias=10
+		SkeletalMeshLODBias=${this.skeletalMeshLODBias}
+		ParticleLODBias=${this.particleLODBias}
 		DetailMode=0
 		MaxDrawDistanceScale=0.800000
 		ShadowFilterQualityBias=-1
@@ -238,8 +242,8 @@ class ChaosSystemSettings {
 		TEXTUREGROUP_EffectsNotFiltered=(MinLODSize=32,MaxLODSize=256,MaxLODSizeTexturePack=256,LODBias=2,LODBiasTexturePack=2,MinMagFilter=${this.filtering},MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
 		TEXTUREGROUP_Skybox=(MinLODSize=64,MaxLODSize=256,MaxLODSizeTexturePack=256,LODBias=2,LODBiasTexturePack=2,MinMagFilter=${this.filtering},MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
 		TEXTUREGROUP_UI=(MinLODSize=1,MaxLODSize=2048,MaxLODSizeTexturePack=2048,LODBias=0,LODBiasTexturePack=0,MinMagFilter=${this.filtering},MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
-		TEXTUREGROUP_Lightmap=(MinLODSize=1,MaxLODSize=512,MaxLODSizeTexturePack=512,LODBias=3,LODBiasTexturePack=3,MinMagFilter=${this.filtering},MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
-		TEXTUREGROUP_Shadowmap=(MinLODSize=1,MaxLODSize=512,MaxLODSizeTexturePack=512,LODBias=3,LODBiasTexturePack=3,MinMagFilter=${this.filtering},MipFilter=Point,NumStreamedMips=3,MipGenSettings=TMGS_SimpleAverage)
+		TEXTUREGROUP_Lightmap=(MinLODSize=${this.lightingMapRes},MaxLODSize=${this.lightingMapRes},MaxLODSizeTexturePack=${this.lightingMapRes},LODBias=3,LODBiasTexturePack=3,MinMagFilter=${this.filtering},MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
+		TEXTUREGROUP_Shadowmap=(MinLODSize=${this.lightingMapRes},MaxLODSize=${this.lightingMapRes},MaxLODSizeTexturePack=${this.lightingMapRes},LODBias=3,LODBiasTexturePack=3,MinMagFilter=${this.filtering},MipFilter=Point,NumStreamedMips=3,MipGenSettings=TMGS_SimpleAverage)
 		TEXTUREGROUP_RenderTarget=(MinLODSize=1,MaxLODSize=2048,MaxLODSizeTexturePack=2048,LODBias=0,LODBiasTexturePack=0,MinMagFilter=${this.filtering},MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
 		TEXTUREGROUP_MobileFlattened=(MinLODSize=1,MaxLODSize=4096,MaxLODSizeTexturePack=4096,LODBias=1,LODBiasTexturePack=1,MinMagFilter=${this.filtering},MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
 		TEXTUREGROUP_ProcBuilding_Face=(MinLODSize=1,MaxLODSize=1024,MaxLODSizeTexturePack=1024,LODBias=1,LODBiasTexturePack=1,MinMagFilter=${this.filtering},MipFilter=Point,MipGenSettings=TMGS_SimpleAverage)
@@ -257,7 +261,7 @@ class ChaosSystemSettings {
 		PerfScalingMaxReduction=0.600000
 		PerfScalingBias=0.200000
 		Borderless=False
-		StaticMeshLODBias=1
+		StaticMeshLODBias=${this.staticMeshLODBias}
 		bAllowDropShadows=False
 		SpeedTreeLODBias=2
 		bUseLowQualMaterials=True

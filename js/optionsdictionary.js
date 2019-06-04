@@ -1,11 +1,20 @@
 let optionsDictionary = {
+	directX: {
+		name: "API",
+		originalKey: "dx11",
+		type: Option,
+		states: [false, true],
+		userStates: ["DirectX 9", "DirectX 11"],
+		defaultIndex: 1,
+		description: "Whether to use DirectX 9 or DirectX 11."
+	},
 	resolution: {
 		name: "Resolution", // Label displayed to user
 		originalKey: "resolution", // Property that has its value changed
 		type: Option,
-		states: [{x: 1920, y: 1080}, {x: 1600, y: 900},  {x: 1366, y: 768}, {x: 1280, y: 720}, {x: 800, y: 600}], // Values to use
-		userStates: ["1920x1080", "1600x900", "1366x768", "1280x720", "800x600"], // Value labels
-		defaultIndex: 0, // Initial value index
+		states: [{x: 800, y: 600}, {x: 1280, y: 720}, {x: 1366, y: 768}, {x: 1440, y: 900}, {x: 1600, y: 900}, {x: 1920, y: 1080}], // Values to use
+		userStates: ["800x600", "1280x720", "1366x768", "1440x900", "1600x900", "1920x1080"], // Value labels
+		defaultIndex: 5, // Initial value index
 		description: "Screen resolution." // Description shown to user
 	},
 	resolutionScale: {
@@ -75,23 +84,34 @@ let optionsDictionary = {
 		defaultIndex: 2,
 		description: "How to interpolate pixel values for low resolution textures or surfaces seen from extreme angles.",
 		warning: "Disabling this option will have a huge visual impact, with little to no gain on performance."
-	},/*
+	},
 	skeletalMeshLODBias: {
-		name: "SkeletalMeshLODBias",
+		name: "SkeletalMesh Quality",
+		originalKey: "skeletalMeshLODBias",
 		type: Option,
-		states: [10, 5, 0],
+		states: [10, 2, 0],
 		userStates: ["Low", "Medium", "High"],
 		defaultIndex: 0,
-		description: "Controls biasing of the Level Of Detail for character 3D geometry, lower values being better looking and higher values giving better performance."
+		description: "Controls biasing of Level Of Detail for deformable 3D geometry, like character models."
+	},
+	staticMeshLODBias: {
+		name: "StaticMesh Quality",
+		originalKey: "staticMeshLODBias",
+		type: Option,
+		states: [10, 2, 0],
+		userStates: ["Low", "Medium", "High"],
+		defaultIndex: 0,
+		description: "Controls biasing of Level Of Detail for static meshes."
 	},
 	particleLODBias: {
-		name: "ParticleLODBias",
+		name: "Particle Quality",
+		originalKey: "particleLODBias",
 		type: Option,
-		states: [10, 5, 0],
+		states: [10, 2, 0],
 		userStates: ["Low", "Medium", "High"],
 		defaultIndex: 0,
-		description: "Controls biasing of the Level Of Detail for particles, lower values being better looking and higher values giving better performance."
-	},*/
+		description: "Controls biasing of Level Of Detail for particles."
+	},
 	characterTextureRes: {
 		name: "Character Texture Resolution",
 		originalKey: "charTextureRes",
@@ -110,10 +130,20 @@ let optionsDictionary = {
 	},
 	environmentTextureRes: {
 		name: "Map Texture Resolution",
+		originalKey: "mapTextureRes",
 		type: Option,
 		states: [2, 64, 512, 1024],
 		userStates: ["Solid (2x2)", "Low (64x64)", "Medium (512x512)", "High (1024x1024)"],
 		defaultIndex: 1
+	},
+	lightingMapRes: {
+		name: "Lighting Resolution",
+		originalKey: "lightingMapRes",
+		type: Option,
+		states: [2, 64, 512, 1024],
+		userStates: ["Solid (2x2)", "Low (64x64)", "Medium (512x512)", "High (1024x1024)"],
+		defaultIndex: 1,
+		description: "Controls resolution for environment lightmaps and shadowmaps."
 	},/*
 	MSAA: {
 		name: "MSAA",
@@ -130,16 +160,7 @@ let optionsDictionary = {
 		userStates: ["Enabled", "Disabled"],
 		defaultIndex: 0,
 		description: "Fast Approximate Antialiasing: Smoothes sharp edges using a post processing filter at a low performance cost, with less precision than MSAA."
-	},*/
-	directX: {
-		name: "API",
-		originalKey: "dx11",
-		type: Option,
-		states: [false, true],
-		userStates: ["DirectX 9", "DirectX 11"],
-		defaultIndex: 1,
-		description: "Whether to use DirectX 9 or DirectX 11."
-	},/*
+	},
 	texturePool: {
 		name: "Video Memory Texture Pool",
 		type: Option,

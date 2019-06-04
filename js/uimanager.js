@@ -45,6 +45,7 @@ class UIManager {
 			prevButton.type = "button"
 			prevButton.value = "❮"
 			prevButton.className = "open"
+			if (!option.hasPrev()) prevButton.className += " hidden"
 			prevButton.id = `prev${id}`
 
 			prevButton.onclick = () => {
@@ -61,6 +62,7 @@ class UIManager {
 			nextButton.type = "button"
 			nextButton.value = "❯"
 			nextButton.className = "close"
+			if (!option.hasNext()) nextButton.className += " hidden"
 			nextButton.id = `next${id}`
 			
 			nextButton.onclick = () => {

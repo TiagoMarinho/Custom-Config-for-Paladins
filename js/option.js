@@ -17,6 +17,12 @@ class Option {
 		if (this.currentStateIndex > 0)
 			--this.currentStateIndex
 	}
+	hasNext () {
+		return this.currentStateIndex + 1 <= this.states.length - 1
+	}
+	hasPrev () {
+		return this.currentStateIndex - 1 >= 0
+	}
 	get value () {
 		return this.states[this.currentStateIndex]
 	}
