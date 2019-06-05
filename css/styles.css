@@ -68,12 +68,14 @@ ul > li {
 	overflow: hidden;
 }
 #options > ul > li > div.option > input {
+	display: inline;
 	cursor: pointer;
 	border: 0;
 	color: #22373a;
-	font-size: 20px;
+	font-size: 1em;
 	font-weight: 700;
 	background: transparent;
+	vertical-align: middle;
 }
 #options > ul > li:hover > div.option > input {
 	color: #ebedf3;
