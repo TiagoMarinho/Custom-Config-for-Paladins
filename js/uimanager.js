@@ -87,14 +87,14 @@ class UIManager {
 				option.prev()
 				valueLabel.innerHTML = option.valueLabel
 				greyOutDisabledButtons()
-				updateFileWithSetting(option)
+				updateFileWithSettings(option)
 			}
 			
 			nextButton.onclick = () => {
 				option.next()
 				valueLabel.innerHTML = option.valueLabel
 				greyOutDisabledButtons()
-				updateFileWithSetting(option)
+				updateFileWithSettings(option)
 			}
 		}).bind(this)(id)
 	}
