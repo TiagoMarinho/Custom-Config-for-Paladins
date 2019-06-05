@@ -1111,6 +1111,6 @@ class ChaosSystemSettings {
 
 
 		`
-		return chaosSystemSettings.replace(/\s\s\s/g, "\n").replace(/\s/g, "\n");
+		return chaosSystemSettings.replace(/\t/g, "");
 	}
 }
