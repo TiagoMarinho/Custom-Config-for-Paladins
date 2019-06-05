@@ -5,7 +5,7 @@ class UIManager {
 		this.submit = submit
 		this.chaosSystemSettings = chaosSystemSettings
 	}
-	updateUI (settings = this.settings) { // TODO: Optimize by not having to redraw entire UI at every change.
+	updateUI (settings = this.settings) {
 		this.wrapper.innerHTML = ``
 		let ul = document.createElement("ul")
 		this.wrapper.appendChild(ul)
@@ -50,14 +50,7 @@ class UIManager {
 			divOption.appendChild(prevButton)
 			prevButton.type = "button"
 			prevButton.value = "❮"
-			prevButton.className = "open"
-			if (!option.hasPrev()) prevButton.className += " hidden"
 			prevButton.id = `prev${id}`
-
-			prevButton.onclick = () => {
-				settings[id].prev()
-				this.updateUI()
-			}
 
 			let valueLabel = document.createElement("span")
 			divOption.appendChild(valueLabel)
@@ -67,13 +60,32 @@ class UIManager {
 			divOption.appendChild(nextButton)
 			nextButton.type = "button"
 			nextButton.value = "❯"
-			nextButton.className = "close"
-			if (!option.hasNext()) nextButton.className += " hidden"
 			nextButton.id = `next${id}`
+
+			let greyOutDisabledButtons = () => {
+				if (!option.hasPrev()) {
+					prevButton.className = "open hidden"
+				} else {
+					prevButton.className = "open"
+				}
+				if (!option.hasNext()) {
+					nextButton.className = "close hidden"
+				} else {
+					nextButton.className = "close"
+				}
+			}
+			greyOutDisabledButtons()
+
+			prevButton.onclick = () => {
+				settings[id].prev()
+				valueLabel.innerHTML = option.valueLabel
+				greyOutDisabledButtons()
+			}
 			
 			nextButton.onclick = () => {
 				settings[id].next()
-				this.updateUI()
+				valueLabel.innerHTML = option.valueLabel
+				greyOutDisabledButtons()
 			}
 		}).bind(this)(id)
 
