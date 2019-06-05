@@ -61,7 +61,7 @@ let optionsDictionary = {
 		userStates: ["Disabled", "1.5x", "2.0x"],
 		defaultIndex: 0,
 		description: "Supersample Antialiasing: Smoothes sharp edges by rendering the scene at a higher resolution and downscaling it afterwards.",
-		warning: "Enabling this option has a huge impact on performance."
+		warning: "Enabling this option has a huge negative impact on performance."
 	},
 	MSAA: {
 		name: "MSAA",
@@ -70,8 +70,7 @@ let optionsDictionary = {
 		states: [1, 2, 4, 8, 16],
 		userStates: ["Disabled", "x2", "x4", "x8", "x16"],
 		defaultIndex: 0,
-		description: "Multisample Antialiasing: Samples pixels multiple times at different points to get the average pixel color, smoothing sharp edges at the cost of performance.",
-		warning: "Untested."
+		description: "Multisample Antialiasing: Samples pixels multiple times at different points to get the average pixel color, smoothing sharp edges at the cost of performance."
 	},
 	FXAA: {
 		name: "FXAA",
