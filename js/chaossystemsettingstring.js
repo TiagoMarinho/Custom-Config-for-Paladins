@@ -40,6 +40,8 @@ class ChaosSystemSettings {
 		this.staticMeshLODBias = 1
 
 		this.perFrameYield = true
+
+		this.texturePoolSize = 150
 	}
 	get result () {
 		let chaosSystemSettings = `[SystemSettings]
@@ -270,7 +272,7 @@ class ChaosSystemSettings {
 		SpeedTreeLODBias=2
 		bUseLowQualMaterials=True
 		bUseSpectatorTextureSettings=False
-		TexturePoolSize=150
+		TexturePoolSize=${this.texturePoolSize}
 		AllowD3D11=False
 		PreferD3D11=False
 		FXAAQuality=${this.fxaa}

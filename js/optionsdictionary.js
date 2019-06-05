@@ -12,9 +12,9 @@ let optionsDictionary = {
 		name: "Screen Resolution",
 		originalKey: "resolution",
 		type: Option,
-		states: [{x: 800, y: 600}, {x: 1280, y: 720}, {x: 1366, y: 768}, {x: 1440, y: 900}, {x: 1600, y: 900}, {x: 1920, y: 1080}],
-		userStates: ["800x600", "1280x720", "1366x768", "1440x900", "1600x900", "1920x1080"],
-		defaultIndex: 5,
+		states: [{x: 800, y: 600}, {x: 1280, y: 720}, {x: 1366, y: 768}, {x: 1440, y: 900}, {x: 1600, y: 900}, {x: 1680, y: 1050}, {x: 1920, y: 1080}],
+		userStates: ["800x600", "1280x720", "1366x768", "1440x900", "1600x900", "1680x1050", "1920x1080"],
+		defaultIndex: 6,
 	},
 	resolutionScale: {
 		name: "Resolution Scale",
@@ -180,7 +180,7 @@ let optionsDictionary = {
 		userStates: ["Disabled", "Enabled"],
 		defaultIndex: 1,
 		description: "General smoke and atmospheric effects.",
-		warning: "Disabling this causes Maeve's ultimate not turn everything black so map is still visible, but players will be properly hidden when not inside the visibility radius."
+		warning: "Disabling this causes Good Night's (Maeve's ultimate) dark fog not to render, and even though players will still be invisible when not inside the visibility radius, it can be considered as an unfair advantage by some players."
 	},
 	speedTreeLeaves: {
 		name: "SpeedTree Leaves",
@@ -190,7 +190,7 @@ let optionsDictionary = {
 		userStates: ["Disabled", "Enabled"],
 		defaultIndex: 1,
 		description: "Whether to use SpeedTree to simulate tree leaves and fronds.",
-		warning: "Disabling this option may prevent tree leaves from rendering, which can be considered as an unfair advantage by some people."
+		warning: "Disabling this option may prevent tree leaves from rendering, which can be considered as an unfair advantage by some players."
 	},
 	oneFrameThreadLag: {
 		name: "Delay render thread",
@@ -211,16 +211,17 @@ let optionsDictionary = {
 		defaultIndex: 1,
 		description: "Disabling this option allows the framerate to go higher than 175.",
 		warning: "Disabling this option may increase hardware usage by a huge margin for little to no gain in terms of input lag. It does not improve performance at all."
-	},/*
-	texturePool: {
-		name: "Video Memory Texture Pool",
-		type: Option,
-		states: [150, 300, 600],
-		userStates: ["150MB", "300MB", "600MB"],
-		defaultIndex: 0,
-		description: "How much video memory will be used by the texture streaming service, in megabytes.",
-		warning: "Setting this too low may cause textures to be set to default resolution."
 	},
+	texturePool: {
+		name: "Texture pool size",
+		originalKey: "texturePoolSize",
+		type: Option,
+		states: [150, 180, 225, 450, 900],
+		userStates: ["150MB", "180MB", "225MB", "450MB", "900MB"],
+		defaultIndex: 1,
+		description: "How much video memory will be allocated by the texture streaming service, in megabytes.",
+		warning: "This is an advanced option, setting this too low can cause the texture streaming service to behave weirdly."
+	},/*
 	materialQuality: {
 		name: "Material Quality",
 		type: Option,
