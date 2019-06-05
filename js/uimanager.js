@@ -12,7 +12,6 @@ class UIManager {
 		for (let id = 0; id < settings.length; ++id) (function(id){
 
 			let option = settings[id]
-			this.chaosSystemSettings[option.originalKey] = option.value
 
 			let li = document.createElement("li")
 			ul.appendChild(li)
@@ -76,20 +75,26 @@ class UIManager {
 			}
 			greyOutDisabledButtons()
 
+			let updateFileWithSetting = (modifiedSetting) => {
+				this.chaosSystemSettings[modifiedSetting.originalKey] = modifiedSetting.value
+
+				submit.download = `ChaosSystemSettings.ini`
+				submit.href = `data:application/octet-stream,${chaosSystemSettings.result}`
+			}
+
 			prevButton.onclick = () => {
-				settings[id].prev()
+				option.prev()
 				valueLabel.innerHTML = option.valueLabel
 				greyOutDisabledButtons()
+				updateFileWithSetting(option)
 			}
 			
 			nextButton.onclick = () => {
-				settings[id].next()
+				option.next()
 				valueLabel.innerHTML = option.valueLabel
 				greyOutDisabledButtons()
+				updateFileWithSetting(option)
 			}
 		}).bind(this)(id)
-
-		submit.download = `ChaosSystemSettings.ini`
-		submit.href = `data:application/octet-stream,${chaosSystemSettings.result}`
 	}
 }
