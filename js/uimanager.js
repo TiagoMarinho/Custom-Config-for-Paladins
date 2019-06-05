@@ -75,12 +75,13 @@ class UIManager {
 			}
 			greyOutDisabledButtons()
 
-			let updateFileWithSetting = (modifiedSetting) => {
-				this.chaosSystemSettings[modifiedSetting.originalKey] = modifiedSetting.value
+			let updateFileWithSettings = (modifiedSettings) => {
+				this.chaosSystemSettings[modifiedSettings.originalKey] = modifiedSettings.value
 
 				submit.download = `ChaosSystemSettings.ini`
 				submit.href = `data:application/octet-stream,${chaosSystemSettings.result}`
 			}
+			updateFileWithSettings(option)
 
 			prevButton.onclick = () => {
 				option.prev()
