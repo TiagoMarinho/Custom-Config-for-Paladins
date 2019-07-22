@@ -44,8 +44,7 @@ class ChaosSystemSettings {
 		this.texturePoolSize = 150
 	}
 	get result () {
-		let chaosSystemSettings = `; This file was generated using the tool at tiagomarinho.github.io/Custom-Config-for-Paladins/
-		
+		let chaosSystemSettings = `
 		[SystemSettings]
 		MaxActiveDecals=${this.maxDecals}
 		GameSettingsVersion=-1
@@ -1113,6 +1112,6 @@ class ChaosSystemSettings {
 
 
 		`
-		return chaosSystemSettings.replace(/\t/g, "");
+		return `; This file was generated using the tool at tiagomarinho.github.io/Custom-Config-for-Paladins/ \n${chaosSystemSettings.replace(/\t/g, "")}`;
 	}
 }
