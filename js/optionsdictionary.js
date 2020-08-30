@@ -6,7 +6,7 @@ let optionsDictionary = {
 		states: [false, true],
 		userStates: ["DirectX 9", "DirectX 11"],
 		defaultIndex: 1,
-		description: "Whether to use DirectX 9 or DirectX 11 for graphics rendering."
+		description: "Whether to use DirectX 9 or DirectX 11 as the graphics rendering API."
 	},
 	resolution: {
 		name: "Screen Resolution",
@@ -15,6 +15,7 @@ let optionsDictionary = {
 		states: [{x: 800, y: 600}, {x: 1280, y: 720}, {x: 1366, y: 768}, {x: 1440, y: 900}, {x: 1600, y: 900}, {x: 1680, y: 1050}, {x: 1920, y: 1080}],
 		userStates: ["800x600", "1280x720", "1366x768", "1440x900", "1600x900", "1680x1050", "1920x1080"],
 		defaultIndex: 6,
+		description: "Screen resolution the game will be displayed at. It's highly recommended to use your native monitor resolution here."
 	},
 	resolutionScale: {
 		name: "Resolution Scale",
@@ -23,7 +24,7 @@ let optionsDictionary = {
 		states: [25, 33, 50, 66, 75, 100], 
 		userStates: ["25%", "33%", "50%", "66%", "75%", "100%"], 
 		defaultIndex: 4,
-		description: "At what percentage of the chosen screen resolution the 3D scene will be rendered with."
+		description: "At what percentage of the chosen screen resolution the 3D scene will be rendered with. Using a lower value increases performance."
 	},
 	dynamicLights: {
 		name: "Dynamic Lights",
@@ -41,7 +42,7 @@ let optionsDictionary = {
 		states: [false, true],
 		userStates: ["Disabled", "Enabled"],
 		defaultIndex: 0,
-		description: "Whether to allow moving objects to cast shadows."
+		description: "Whether to allow moving objects to cast shadows into the scene."
 	},
 	decals: {
 		name: "Decals",
@@ -70,7 +71,7 @@ let optionsDictionary = {
 		states: [1, 2, 4, 8, 16],
 		userStates: ["Disabled", "x2", "x4", "x8", "x16"],
 		defaultIndex: 0,
-		description: "Multisample Antialiasing: Samples pixels multiple times at different points to get the average pixel color, smoothing sharp edges at the cost of performance."
+		description: "Multisample Antialiasing: Samples pixels multiple times at different points to get the average pixel color, smoothing sharp edges at a performance cost."
 	},
 	FXAA: {
 		name: "FXAA",
@@ -98,7 +99,7 @@ let optionsDictionary = {
 		states: [10, 2, 0],
 		userStates: ["Low", "Medium", "High"],
 		defaultIndex: 0,
-		description: "Controls biasing of Level Of Detail for meshes parented to armatures."
+		description: "Controls how far deformable objects (such as characters) will have to be before switching to a lower geometry version of themselves to increase performance."
 	},
 	staticMeshLODBias: {
 		name: "StaticMesh Quality",
@@ -107,7 +108,7 @@ let optionsDictionary = {
 		states: [10, 2, 0],
 		userStates: ["Low", "Medium", "High"],
 		defaultIndex: 0,
-		description: "Controls biasing of Level Of Detail for meshes with no armature."
+		description: "Controls how far static objects (such as map props) will have to be before switching to a lower geometry version of themselves to increase performance."
 	},
 	particleLODBias: {
 		name: "Particle Quality",
@@ -116,7 +117,7 @@ let optionsDictionary = {
 		states: [10, 2, 0],
 		userStates: ["Low", "Medium", "High"],
 		defaultIndex: 0,
-		description: "Controls biasing of Level Of Detail for particles."
+		description: "Controls how far particles (such as projectiles) will have to be before switching to a lower geometry version of themselves to increase performance."
 	},
 	characterTextureRes: {
 		name: "Character Texture Resolution",
@@ -149,7 +150,7 @@ let optionsDictionary = {
 		states: [2, 64, 512, 1024],
 		userStates: ["Solid (2x2)", "Low (64x64)", "Medium (512x512)", "High (1024x1024)"],
 		defaultIndex: 1,
-		description: "Controls resolution for environment lightmaps and shadowmaps."
+		description: "Controls resolution for static (baked) environment shadows and lighting."
 	},
 	ragdolls: {
 		name: "Ragdolls",
@@ -159,7 +160,7 @@ let optionsDictionary = {
 		userStates: ["Disabled", "Enabled"],
 		defaultIndex: 1,
 		description: "Physics simulation on character death instead of its default death animation.",
-		warning: "Disabling this option may cause issues with Shattered and Golden weapon effects."
+		warning: "Disabling this option may cause issues with Shattered and Golden weapon effects upon player death."
 	},
 	verticalSync: {
 		name: "V-Sync",
@@ -179,7 +180,7 @@ let optionsDictionary = {
 		userStates: ["Disabled", "Enabled"],
 		defaultIndex: 1,
 		description: "General smoke and atmospheric effects.",
-		warning: "Disabling this causes Good Night's (Maeve's ultimate) dark fog not to render, and even though players will still be invisible when not inside the visibility radius, it can be considered as an unfair advantage by some players."
+		warning: "Disabling this causes Maeve's ultimate not to render a dark fog, and even though players will still be invisible when outside the visibility radius, it can be considered as an unfair advantage by some players."
 	},
 	speedTreeLeaves: {
 		name: "SpeedTree Leaves",
@@ -209,7 +210,7 @@ let optionsDictionary = {
 		userStates: ["Disabled", "Enabled"],
 		defaultIndex: 1,
 		description: "Disabling this option allows the framerate to go higher than 175.",
-		warning: "Disabling this option may increase hardware usage by a huge margin for little to no gain in terms of input lag. It does not improve performance at all."
+		warning: "Disabling this option may increase hardware usage by a huge margin for little to no gain in terms of input lag. It does not improve performance at all. Only recommended if you have a 240hz monitor or for benchmarking purposes on beefy computers."
 	},
 	texturePool: {
 		name: "Texture pool size",
@@ -219,7 +220,7 @@ let optionsDictionary = {
 		userStates: ["150MB", "180MB", "225MB", "450MB", "900MB"],
 		defaultIndex: 1,
 		description: "How much video memory will be allocated by the texture streaming service, in megabytes.",
-		warning: "This is an advanced option, setting this too low can cause the texture streaming service to behave weirdly."
+		warning: "This is an advanced option, setting this too low can cause the texture streaming to glitch and textures to flicker."
 	},/*
 	materialQuality: {
 		name: "Material Quality",
